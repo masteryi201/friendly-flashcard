@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from sys import argv
+import numpy as np
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from reportlab.lib.pagesizes import landscape
@@ -183,13 +184,25 @@ def vi(value,len_ja,len_all):
 		vietnamese += char2
 		VI_len_start += 1
 	return vietnamese
-def image(data_images,img_before_1,path_image):
+def image(data_images,img,path_image):
 	extension=['.png','.jpeg','.jpg']
-	if type(img_before_1) is float:
-		img_before_1 = int(img_before_1)
-		img_before_1 = str(img_before_1)
+	if type(img) is np.int64 :
+		img = img.astype(str)
+	elif type(img) is np.int32 :
+		img = img.astype(str)
+	elif type(img) is np.float64 :
+		img = img.astype(int)
+		img = img.astype(str)
+	elif type(img) is np.float32 :
+		img = img.astype(int)
+		img = img.astype(str)
+	else :
+		print(type(img))
+	print(img)
+	print(type(img))
 	for i in range(3):
-		file_name = img_before_1 + extension[i-1]
+		file_name = img + extension[i-1]
 		if file_name in data_images:
+			print(file_name)
 			return path_image + file_name
 module(data_file)
