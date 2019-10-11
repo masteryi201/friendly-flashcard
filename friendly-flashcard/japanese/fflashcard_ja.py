@@ -6,12 +6,13 @@ from PyPDF2 import PdfFileMerger
 script, csv_file, path_image = argv
 data_file = csv_file
 results_file = './temp/results.csv'
+layder = 10
 def main (data_file) :
 	list_file = []
 	cp_data = pd.read_csv(data_file, header=0)
 	number_row = cp_data.shape[0]
-	num_page = math.ceil(float(number_row) / 8.0)
-	missing = num_page * 8 - number_row
+	num_page = math.ceil(float(number_row) / layder)
+	missing = num_page * layder - number_row
 	cp_data.to_csv(results_file, index=False, header=False)
 	data_frames = pd.read_csv(results_file, header=None)
 	if missing != 0.0 :
@@ -22,7 +23,7 @@ def main (data_file) :
 		list_file.append('file_' + str(i) + '.pdf')
 		mycmd = 'python kanji_module.py ' + results_file + ' file_' + str(i) + " " + path_image
 		os.system(mycmd)
-		data_frames = data_frames.iloc[8:]
+		data_frames = data_frames.iloc[layder:]
 		data_frames.to_csv(results_file, index=False, header=False)
 	pooled(list_file)
 	remove()
