@@ -11,7 +11,6 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph
 from reportlab.lib.colors import Color, pink, black, red, blue, green
-from reportlab.lib.units import inch
 import pandas as pd
 script, csv_file, name_pdf, path_image = argv
 data_file = csv_file
@@ -43,27 +42,27 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 		can.rect(0, count_row*height_layer_size, width_layer_size, height_layer_size, stroke=1, fill=0)
 		if pd.notna(img_before_1) :
 			img_before_1 =  image(data_images,img_before_1,path_image)
-			can.drawImage(img_before_1, 40, count_row*height_layer_size + height_layer_size*0.1, width=150, height=130)
-		can.roundRect(40, count_row*height_layer_size + height_layer_size*0.1, 150, 130, 2, fill=0)
+			can.drawImage(img_before_1, 40, count_row*height_layer_size + height_layer_size*0.155, width=130, height=110)
+		can.roundRect(40, count_row*height_layer_size + height_layer_size*0.155, 130, 110, 2, fill=0)
 		kanji5 = data_frames[0][count_row + height_layer]
 		img_before_5 = data_frames[9][count_row + height_layer]
 		can.rect(width_layer_size,count_row*height_layer_size,width_layer_size, height_layer_size,fill=1)
 		can.rect(width_layer_size, count_row*height_layer_size, width_layer_size, height_layer_size, stroke=1, fill=0)
 		if pd.notna(img_before_5) :
 			img_before_5 =  image(data_images,img_before_5,path_image)
-			can.drawImage(img_before_5, 338, count_row*height_layer_size + height_layer_size*0.1, width=150, height=130)
-		can.roundRect(338, count_row*height_layer_size + height_layer_size*0.1, 150, 130, 2, fill=0)
+			can.drawImage(img_before_5, 338, count_row*height_layer_size + height_layer_size*0.155, width=130, height=110)
+		can.roundRect(338, count_row*height_layer_size + height_layer_size*0.155, 130, 110, 2, fill=0)
 		display_frames_before(can, kanji1, kanji5, count_row)
 	can.showPage()
 	for count_row in range (height_layer) :
 		onyomi1 = data_frames[1][count_row]
 		kunyomi1 = data_frames[2][count_row]
-		remember1 = data_frames[3][count_row]
-		Han_Viet1 = data_frames[4][count_row]
-		meaning1_1 = data_frames[5][count_row]
-		meaning1_2 = data_frames[6][count_row]
-		meaning1_3 = data_frames[7][count_row]
-		meaning1_4 = data_frames[8][count_row]
+		Han_Viet1 = data_frames[3][count_row]
+		meaning1_1 = data_frames[4][count_row]
+		meaning1_2 = data_frames[5][count_row]
+		meaning1_3 = data_frames[6][count_row]
+		meaning1_4 = data_frames[7][count_row]
+		exception1 = data_frames[8][count_row]
 		img_after_1 = data_frames[10][count_row]
 		can.setFillColorRGB(255, 255, 255)
 		can.rect(0,count_row*height_layer_size,width_layer_size, height_layer_size,fill=1)
@@ -73,27 +72,27 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 			can.drawImage(img_after_1, 0, count_row*height_layer_size, width=width_layer_size, height=height_layer_size)
 		onyomi5 = data_frames[1][count_row + height_layer]
 		kunyomi5 = data_frames[2][count_row + height_layer]
-		remember5 = data_frames[3][count_row + height_layer]
-		Han_Viet5 = data_frames[4][count_row + height_layer]
-		meaning5_1 = data_frames[5][count_row + height_layer]
-		meaning5_2 = data_frames[6][count_row + height_layer]
-		meaning5_3 = data_frames[7][count_row + height_layer]
-		meaning5_4 = data_frames[8][count_row + height_layer]
+		Han_Viet5 = data_frames[3][count_row + height_layer]
+		meaning5_1 = data_frames[4][count_row + height_layer]
+		meaning5_2 = data_frames[5][count_row + height_layer]
+		meaning5_3 = data_frames[6][count_row + height_layer]
+		meaning5_4 = data_frames[7][count_row + height_layer]
+		exception5 = data_frames[8][count_row + height_layer]
 		img_after_5 = data_frames[10][count_row + height_layer]
 		can.rect(width_layer_size, count_row*height_layer_size,width_layer_size, height_layer_size,fill=1)
 		can.rect(width_layer_size, count_row*height_layer_size, width_layer_size, height_layer_size, stroke=1, fill=0)
 		if pd.notna(img_after_5) :
 			img_after_5 =  image(data_images,img_after_5,path_image)
 			can.drawImage(img_after_5, width_layer_size, count_row*height_layer_size, width=width_layer_size, height=height_layer_size)
-		display_frames_after(can, onyomi1, kunyomi1, remember1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, remember5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row)
+		display_frames_after(can, onyomi1, kunyomi1, exception1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, exception5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row)
 
 def display_frames_before (can, kanji1, kanji7, count_row) :
 	can.setFillColor(black)
 	can.setFont('hgrskp', 65, leading=None)
-	can.drawString(205, count_row*height_layer_size + height_layer_size*0.38,kanji1)
+	can.drawString(195, count_row*height_layer_size + height_layer_size*0.38,kanji1)
 	can.setFont('hgrskp', 65, leading=None)
-	can.drawString(500, count_row*height_layer_size + height_layer_size*0.38, kanji7)
-def display_frames_after (can, onyomi1, kunyomi1, remember1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, remember5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row) :
+	can.drawString(490, count_row*height_layer_size + height_layer_size*0.38, kanji7)
+def display_frames_after (can, onyomi1, kunyomi1, exception1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, exception5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row) :
 	can.setFillColor(black)
 	can.setFont('times-new-roman', 20, leading=None)
 	can.drawCentredString(448, count_row*height_layer_size + height_layer_size/1.238,Han_Viet1)
@@ -136,6 +135,16 @@ def display_frames_after (can, onyomi1, kunyomi1, remember1, Han_Viet1,  meaning
 		can.drawString(323, count_row*height_layer_size + height_layer_size/7.012,"- "+meaning_ja)
 		can.setFont('times-new-roman', 12, leading=None)
 		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
+	if exception1 != "_" :
+		can.setFillColor(red)
+		meaning_ja = ja(exception1)
+		meaning_vi = vi(exception1,len(meaning_ja),len(exception1))
+		can.setFont('simsun', 11, leading=None)
+		meaning_ja = exception_correction(meaning_ja)
+		can.drawString(323, count_row*height_layer_size + height_layer_size/13.5,"* "+meaning_ja)
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/13.5,meaning_vi)
+		can.setFillColor(black)
 
 	can.setFont('times-new-roman', 20, leading=None)
 	can.drawCentredString(150, count_row*height_layer_size + height_layer_size/1.238,Han_Viet5)
@@ -178,6 +187,16 @@ def display_frames_after (can, onyomi1, kunyomi1, remember1, Han_Viet1,  meaning
 		can.drawString(25, count_row*height_layer_size + height_layer_size/7.012,"- "+meaning_ja)
 		can.setFont('times-new-roman', 12, leading=None)
 		can.drawString(25+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
+	if exception5 != "_" :
+		can.setFillColor(red)
+		meaning_ja = ja(exception5)
+		meaning_vi = vi(exception5,len(meaning_ja),len(exception5))
+		can.setFont('simsun', 11, leading=None)
+		meaning_ja = exception_correction(meaning_ja)
+		can.drawString(323, count_row*height_layer_size + height_layer_size/13.5,"* "+meaning_ja)
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/13.5,meaning_vi)
+		can.setFillColor(black)
 
 def ja(value):
 	meaning_len = len(value)
@@ -188,7 +207,16 @@ def ja(value):
 			japanese += char1
 		else:
 			break
-	return japanese
+	japanese_len = len(japanese)
+	ja_result=""
+	for j in range (japanese_len):
+		char2 = japanese[j]
+		if char2 == ",":
+			ja_result += "/"
+		else :
+			ja_result += char2
+			
+	return ja_result
 def vi(value,len_ja,len_all):
 	vietnamese = ""
 	VI_len_start = len_ja + 1
@@ -215,11 +243,18 @@ def image(data_images,img,path_image):
 		file_name = img + extension[i-1]
 		if file_name in data_images:
 			return path_image + file_name
-def correction(string,):
+def correction(string):
 	if len(string) <= 10:
-		return  string + "  "
+		return  string + "   "
 	elif len(string) <= 20:
+		return string + "  "
+	elif len(string) <= 30:
 		return string + " "
 	else:
 		return string
+def exception_correction(string):
+	if len(string) <= 10:
+		return  string + " "
+	else:
+		return string	
 module(data_file)
