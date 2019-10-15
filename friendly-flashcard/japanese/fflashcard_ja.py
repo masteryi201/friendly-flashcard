@@ -17,7 +17,7 @@ def main (data_file) :
 	data_frames = pd.read_csv(results_file, header=None)
 	if missing != 0.0 :
 		for i in range (int(missing)):
-			add_row(data_frames, [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ''])
+			add_row(data_frames, [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '', ''])
 	print(data_frames)
 	for i in range(int(num_page)) :
 		list_file.append('file_' + str(i) + '.pdf')
