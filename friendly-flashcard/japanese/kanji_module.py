@@ -10,7 +10,8 @@ from reportlab.lib.pagesizes import A4
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph
-from reportlab.lib.colors import Color, pink, black, red, blue, green
+from reportlab.lib.colors import Color, black, blue, green, red
+from reportlab.lib.colors import HexColor
 import pandas as pd
 script, csv_file, name_pdf, path_image = argv
 data_file = csv_file
@@ -37,7 +38,7 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 	for count_row in range (height_layer) :
 		kanji1 = data_frames[0][count_row]
 		img_before_1 = data_frames[9][count_row]
-		can.setFillColorRGB(255, 255, 255)
+		can.setFillColor(HexColor("#fadcf4"))
 		can.rect(0,count_row*height_layer_size,width_layer_size, height_layer_size,fill=1)
 		can.rect(0, count_row*height_layer_size, width_layer_size, height_layer_size, stroke=1, fill=0)
 		if pd.notna(img_before_1) :
@@ -64,7 +65,7 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 		meaning1_4 = data_frames[7][count_row]
 		exception1 = data_frames[8][count_row]
 		img_after_1 = data_frames[10][count_row]
-		can.setFillColorRGB(255, 255, 255)
+		can.setFillColor(HexColor("#fadcf4"))
 		can.rect(0,count_row*height_layer_size,width_layer_size, height_layer_size,fill=1)
 		can.rect(0, count_row*height_layer_size, width_layer_size, height_layer_size, stroke=1, fill=0)
 		if pd.notna(img_after_1) :
@@ -87,22 +88,24 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 		display_frames_after(can, onyomi1, kunyomi1, exception1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, exception5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row)
 
 def display_frames_before (can, kanji1, kanji7, count_row) :
-	can.setFillColor(black)
+	can.setFillColor(HexColor("#000000"))
 	can.setFont('hgrskp', 65, leading=None)
 	can.drawString(195, count_row*height_layer_size + height_layer_size*0.38,kanji1)
 	can.setFont('hgrskp', 65, leading=None)
 	can.drawString(490, count_row*height_layer_size + height_layer_size*0.38, kanji7)
 def display_frames_after (can, onyomi1, kunyomi1, exception1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, exception5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row) :
-	can.setFillColor(black)
+	can.setFillColor(HexColor("#810207"))
 	can.setFont('times-new-roman', 18, leading=None)
 	can.drawCentredString(448, count_row*height_layer_size + height_layer_size/1.238,Han_Viet1)
-	can.setFont('simsun', 12, leading=None)
+	can.setFillColor(blue)
+	can.setFont('simsun', 10, leading=None)
 	can.drawString(323, count_row*height_layer_size + height_layer_size/1.403,"★訓 :" + onyomi1)
-	can.setFont('simsun', 12, leading=None)
+	can.setFont('simsun', 10, leading=None)
 	can.drawString(323, count_row*height_layer_size + height_layer_size/1.619,"★音 :" + kunyomi1)
 	can.setFont('times-new-roman', 10, leading=None)
-	can.drawString(323, count_row*height_layer_size + height_layer_size/1.914,"Ví dụ :")
-	can.setFont('simsun', 12, leading=None)
+	can.setFillColor(HexColor("#dc01bb"))
+	can.drawString(323, count_row*height_layer_size + height_layer_size/1.892,"Ví dụ :")
+	can.setFillColor(green)
 	if meaning1_1 != "_" :
 		meaning_ja = ja(meaning1_1)
 		meaning_vi = vi(meaning1_1,len(meaning_ja),len(meaning1_1))
@@ -141,20 +144,33 @@ def display_frames_after (can, onyomi1, kunyomi1, exception1, Han_Viet1,  meanin
 		meaning_vi = vi(exception1,len(meaning_ja),len(exception1))
 		can.setFont('simsun', 9, leading=None)
 		meaning_ja = exception_correction(meaning_ja)
-		can.drawString(323, count_row*height_layer_size + height_layer_size/15.5,"* "+meaning_ja)
-		can.setFont('times-new-roman', 8, leading=None)
-		can.drawString(323+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/15.5,meaning_vi)
+		if meaning1_3 == "_" :
+			can.drawString(323, count_row*height_layer_size + height_layer_size/4.21,"* "+meaning_ja)
+			can.setFont('times-new-roman', 8, leading=None)
+			can.drawString(323+len(meaning_ja)*3, count_row*height_layer_size + height_layer_size/4.21,meaning_vi)
+		elif meaning1_4 == "_" :
+			can.drawString(323, count_row*height_layer_size + height_layer_size/7.012,"* "+meaning_ja)
+			can.setFont('times-new-roman', 8, leading=None)
+			can.drawString(323+len(meaning_ja)*3, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
+		else :
+			can.drawString(323, count_row*height_layer_size + height_layer_size/15.5,"* "+meaning_ja)
+			can.setFont('times-new-roman', 8, leading=None)
+			can.drawString(323+len(meaning_ja)*3, count_row*height_layer_size + height_layer_size/15.5,meaning_vi)
 		can.setFillColor(black)
+	can.setFillColor(black)
 
 	can.setFont('times-new-roman', 18, leading=None)
+	can.setFillColor(HexColor("#810207"))
 	can.drawCentredString(150, count_row*height_layer_size + height_layer_size/1.238,Han_Viet5)
-	can.setFont('simsun', 12, leading=None)
+	can.setFillColor(blue)
+	can.setFont('simsun', 10, leading=None)
 	can.drawString(25, count_row*height_layer_size + height_layer_size/1.403,"★訓 :" + onyomi5)
-	can.setFont('simsun', 12, leading=None)
+	can.setFont('simsun', 10, leading=None)
 	can.drawString(25, count_row*height_layer_size + height_layer_size/1.619,"★音 :" + kunyomi5)
 	can.setFont('times-new-roman', 10, leading=None)
-	can.drawString(25, count_row*height_layer_size + height_layer_size/1.914,"Ví dụ :")
-	can.setFont('simsun', 12, leading=None)
+	can.setFillColor(HexColor("#dc01bb"))
+	can.drawString(25, count_row*height_layer_size + height_layer_size/1.892,"Ví dụ :")
+	can.setFillColor(green)
 	if meaning5_1 != "_" :
 		meaning_ja = ja(meaning5_1)
 		meaning_vi = vi(meaning5_1,len(meaning_ja),len(meaning5_1))
@@ -193,10 +209,20 @@ def display_frames_after (can, onyomi1, kunyomi1, exception1, Han_Viet1,  meanin
 		meaning_vi = vi(exception5,len(meaning_ja),len(exception5))
 		can.setFont('simsun', 9, leading=None)
 		meaning_ja = exception_correction(meaning_ja)
-		can.drawString(25, count_row*height_layer_size + height_layer_size/15.5,"* "+meaning_ja)
-		can.setFont('times-new-roman', 8, leading=None)
-		can.drawString(25 + len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/15.5,meaning_vi)
+		if meaning5_3 == "_" :
+			can.drawString(25, count_row*height_layer_size + height_layer_size/4.21,"* "+meaning_ja)
+			can.setFont('times-new-roman', 8, leading=None)
+			can.drawString(25+len(meaning_ja)*3, count_row*height_layer_size + height_layer_size/4.21,meaning_vi)
+		elif meaning5_4 == "_" :
+			can.drawString(25, count_row*height_layer_size + height_layer_size/7.012,"* "+meaning_ja)
+			can.setFont('times-new-roman', 8, leading=None)
+			can.drawString(25+len(meaning_ja)*3, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
+		else :
+			can.drawString(25, count_row*height_layer_size + height_layer_size/15.5,"* "+meaning_ja)
+			can.setFont('times-new-roman', 8, leading=None)
+			can.drawString(25+len(meaning_ja)*3, count_row*height_layer_size + height_layer_size/15.5,meaning_vi)
 		can.setFillColor(black)
+	can.setFillColor(black)
 
 def ja(value):
 	meaning_len = len(value)
@@ -253,8 +279,14 @@ def correction(string):
 	else:
 		return string
 def exception_correction(string):
+	print(string)
+	print(len(string))
 	if len(string) <= 10:
-		return  string + " "
+		return  string + "      "
+	elif len(string) <= 20:
+		return string + "     "
+	elif len(string) <= 30:
+		return string + "    "
 	else:
-		return string	
+		return string
 module(data_file)
