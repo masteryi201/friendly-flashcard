@@ -94,108 +94,108 @@ def display_frames_before (can, kanji1, kanji7, count_row) :
 	can.drawString(490, count_row*height_layer_size + height_layer_size*0.38, kanji7)
 def display_frames_after (can, onyomi1, kunyomi1, exception1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, exception5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row) :
 	can.setFillColor(black)
-	can.setFont('times-new-roman', 20, leading=None)
+	can.setFont('times-new-roman', 18, leading=None)
 	can.drawCentredString(448, count_row*height_layer_size + height_layer_size/1.238,Han_Viet1)
-	can.setFont('simsun', 14, leading=None)
+	can.setFont('simsun', 12, leading=None)
 	can.drawString(323, count_row*height_layer_size + height_layer_size/1.403,"★訓 :" + onyomi1)
-	can.setFont('simsun', 14, leading=None)
+	can.setFont('simsun', 12, leading=None)
 	can.drawString(323, count_row*height_layer_size + height_layer_size/1.619,"★音 :" + kunyomi1)
-	can.setFont('times-new-roman', 12, leading=None)
+	can.setFont('times-new-roman', 10, leading=None)
 	can.drawString(323, count_row*height_layer_size + height_layer_size/1.914,"Ví dụ :")
-	can.setFont('simsun', 14, leading=None)
+	can.setFont('simsun', 12, leading=None)
 	if meaning1_1 != "_" :
 		meaning_ja = ja(meaning1_1)
 		meaning_vi = vi(meaning1_1,len(meaning_ja),len(meaning1_1))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(323, count_row*height_layer_size + height_layer_size/2.339,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/2.339,meaning_vi)	
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(323+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/2.339,meaning_vi)	
 	if meaning1_2 != "_" :
 		meaning_ja = ja(meaning1_2)
 		meaning_vi = vi(meaning1_2,len(meaning_ja),len(meaning1_2))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(323, count_row*height_layer_size + height_layer_size/3.007,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/3.007,meaning_vi)	
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(323+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/3.007,meaning_vi)	
 	if meaning1_3 != "_" :
 		meaning_ja = ja(meaning1_3)
 		meaning_vi = vi(meaning1_3,len(meaning_ja),len(meaning1_3))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(323, count_row*height_layer_size + height_layer_size/4.21,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/4.21,meaning_vi)
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(323+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/4.21,meaning_vi)
 	if meaning1_4 != "_" :
 		meaning_ja = ja(meaning1_4)
 		meaning_vi = vi(meaning1_4,len(meaning_ja),len(meaning1_4))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(323, count_row*height_layer_size + height_layer_size/7.012,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(323+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
 	if exception1 != "_" :
 		can.setFillColor(red)
 		meaning_ja = ja(exception1)
 		meaning_vi = vi(exception1,len(meaning_ja),len(exception1))
-		can.setFont('simsun', 11, leading=None)
+		can.setFont('simsun', 9, leading=None)
 		meaning_ja = exception_correction(meaning_ja)
-		can.drawString(323, count_row*height_layer_size + height_layer_size/13.5,"* "+meaning_ja)
-		can.setFont('times-new-roman', 10, leading=None)
-		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/13.5,meaning_vi)
+		can.drawString(323, count_row*height_layer_size + height_layer_size/15.5,"* "+meaning_ja)
+		can.setFont('times-new-roman', 8, leading=None)
+		can.drawString(323+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/15.5,meaning_vi)
 		can.setFillColor(black)
 
-	can.setFont('times-new-roman', 20, leading=None)
+	can.setFont('times-new-roman', 18, leading=None)
 	can.drawCentredString(150, count_row*height_layer_size + height_layer_size/1.238,Han_Viet5)
-	can.setFont('simsun', 14, leading=None)
+	can.setFont('simsun', 12, leading=None)
 	can.drawString(25, count_row*height_layer_size + height_layer_size/1.403,"★訓 :" + onyomi5)
-	can.setFont('simsun', 14, leading=None)
+	can.setFont('simsun', 12, leading=None)
 	can.drawString(25, count_row*height_layer_size + height_layer_size/1.619,"★音 :" + kunyomi5)
-	can.setFont('times-new-roman', 12, leading=None)
+	can.setFont('times-new-roman', 10, leading=None)
 	can.drawString(25, count_row*height_layer_size + height_layer_size/1.914,"Ví dụ :")
-	can.setFont('simsun', 14, leading=None)
+	can.setFont('simsun', 12, leading=None)
 	if meaning5_1 != "_" :
 		meaning_ja = ja(meaning5_1)
 		meaning_vi = vi(meaning5_1,len(meaning_ja),len(meaning5_1))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(25, count_row*height_layer_size + height_layer_size/2.339,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(25+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/2.339,meaning_vi)	
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(25+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/2.339,meaning_vi)	
 	if meaning5_2 != "_" :
 		meaning_ja = ja(meaning5_2)
 		meaning_vi = vi(meaning5_2,len(meaning_ja),len(meaning5_2))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(25, count_row*height_layer_size + height_layer_size/3.007,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(25+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/3.007,meaning_vi)	
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(25+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/3.007,meaning_vi)	
 	if meaning5_3 != "_" :
 		meaning_ja = ja(meaning5_3)
 		meaning_vi = vi(meaning5_3,len(meaning_ja),len(meaning5_3))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(25, count_row*height_layer_size + height_layer_size/4.21,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(25+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/4.21,meaning_vi)
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(25+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/4.21,meaning_vi)
 	if meaning5_4 != "_" :
 		meaning_ja = ja(meaning5_4)
 		meaning_vi = vi(meaning5_4,len(meaning_ja),len(meaning5_4))
-		can.setFont('simsun', 13, leading=None)
+		can.setFont('simsun', 11, leading=None)
 		meaning_ja = correction(meaning_ja)
 		can.drawString(25, count_row*height_layer_size + height_layer_size/7.012,"- "+meaning_ja)
-		can.setFont('times-new-roman', 12, leading=None)
-		can.drawString(25+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
+		can.setFont('times-new-roman', 10, leading=None)
+		can.drawString(25+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
 	if exception5 != "_" :
 		can.setFillColor(red)
 		meaning_ja = ja(exception5)
 		meaning_vi = vi(exception5,len(meaning_ja),len(exception5))
-		can.setFont('simsun', 11, leading=None)
+		can.setFont('simsun', 9, leading=None)
 		meaning_ja = exception_correction(meaning_ja)
-		can.drawString(323, count_row*height_layer_size + height_layer_size/13.5,"* "+meaning_ja)
-		can.setFont('times-new-roman', 10, leading=None)
-		can.drawString(323+len(meaning_ja)*5, count_row*height_layer_size + height_layer_size/13.5,meaning_vi)
+		can.drawString(25, count_row*height_layer_size + height_layer_size/15.5,"* "+meaning_ja)
+		can.setFont('times-new-roman', 8, leading=None)
+		can.drawString(25 + len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/15.5,meaning_vi)
 		can.setFillColor(black)
 
 def ja(value):
@@ -215,7 +215,7 @@ def ja(value):
 			ja_result += "/"
 		else :
 			ja_result += char2
-			
+	print(ja_result)
 	return ja_result
 def vi(value,len_ja,len_all):
 	vietnamese = ""
@@ -245,11 +245,11 @@ def image(data_images,img,path_image):
 			return path_image + file_name
 def correction(string):
 	if len(string) <= 10:
-		return  string + "   "
+		return  string + "    "
 	elif len(string) <= 20:
-		return string + "  "
+		return string + "   "
 	elif len(string) <= 30:
-		return string + " "
+		return string + "  "
 	else:
 		return string
 def exception_correction(string):
