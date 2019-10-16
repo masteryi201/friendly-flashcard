@@ -45,6 +45,7 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 			img_before_1 =  image(data_images,img_before_1,path_image)
 			can.drawImage(img_before_1, 40, count_row*height_layer_size + height_layer_size*0.155, width=130, height=110)
 		can.roundRect(40, count_row*height_layer_size + height_layer_size*0.155, 130, 110, 2, fill=0)
+		can.roundRect(265, count_row*height_layer_size + height_layer_size*0.155, 10, 10, 2, fill=0)
 		kanji5 = data_frames[0][count_row + height_layer]
 		img_before_5 = data_frames[9][count_row + height_layer]
 		can.rect(width_layer_size,count_row*height_layer_size,width_layer_size, height_layer_size,fill=1)
@@ -53,6 +54,7 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 			img_before_5 =  image(data_images,img_before_5,path_image)
 			can.drawImage(img_before_5, 338, count_row*height_layer_size + height_layer_size*0.155, width=130, height=110)
 		can.roundRect(338, count_row*height_layer_size + height_layer_size*0.155, 130, 110, 2, fill=0)
+		can.roundRect(563, count_row*height_layer_size + height_layer_size*0.155, 10, 10, 2, fill=0)
 		display_frames_before(can, kanji1, kanji5, count_row)
 	can.showPage()
 	for count_row in range (height_layer) :
