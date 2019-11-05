@@ -88,7 +88,29 @@ def s12_words (can, data_frames, number_row, number_col, data_images):
 			img_after_5 =  image(data_images,img_after_5,path_image)
 			can.drawImage(img_after_5, width_layer_size, count_row*height_layer_size, width=width_layer_size, height=height_layer_size)
 		display_frames_after(can, onyomi1, kunyomi1, exception1, Han_Viet1,  meaning1_1, meaning1_2, meaning1_3, meaning1_4, onyomi5, kunyomi5, exception5, Han_Viet5, meaning5_1, meaning5_2, meaning5_3, meaning5_4, count_row)
+	for count_row in range(height_layer*2):
+		kanji1 = data_frames[0][count_row]
+		onyomi1 = data_frames[1][count_row]
+		kunyomi1 = data_frames[2][count_row]
+		Han_Viet1 = data_frames[3][count_row]
+		meaning1_1 = data_frames[4][count_row]
+		meaning1_2 = data_frames[5][count_row]
+		meaning1_3 = data_frames[6][count_row]
+		meaning1_4 = data_frames[7][count_row]
+		exception1 = data_frames[8][count_row]				
+		print_data_after(kanji1, Han_Viet1, onyomi1, kunyomi1, meaning1_1, meaning1_2, meaning1_3, meaning1_4, exception1)
 
+def print_data_after(kanji, han_viet, onyomi, kunyomi, meaning1, meaning2, meaning3, meaning4, expection):
+	print("Chữ Kanji: " + kanji)	
+	print("Âm Hán Việt: " + han_viet)
+	print("Âm on: " + onyomi)
+	print("Âm kun: " + kunyomi)
+	print("Ví dụ 1: " + meaning1)
+	print("Ví dụ 2: " + meaning2)
+	print("Ví dụ 3: " + meaning3)
+	print("Ví dụ 4: " + meaning4)
+	print("Ngoại lệ: " + expection)
+	print("")
 def display_frames_before (can, kanji1, kanji7, count_row) :
 	can.setFillColor(HexColor("#000000"))
 	can.setFont('hgrskp', 65, leading=None)
@@ -142,7 +164,10 @@ def display_frames_after (can, onyomi1, kunyomi1, exception1, Han_Viet1,  meanin
 		can.drawString(323+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
 	if exception1 != "_" :
 		can.setFillColor(red)
-		meaning_ja = ja(exception1)
+		if "/" in exception1:
+			meaning_ja = ja(exception1)
+		else :
+			meaning_ja = ""
 		meaning_vi = vi(exception1,len(meaning_ja),len(exception1))
 		can.setFont('simsun', 9, leading=None)
 		meaning_ja = exception_correction(meaning_ja)
@@ -207,7 +232,10 @@ def display_frames_after (can, onyomi1, kunyomi1, exception1, Han_Viet1,  meanin
 		can.drawString(25+len(meaning_ja)*4, count_row*height_layer_size + height_layer_size/7.012,meaning_vi)
 	if exception5 != "_" :
 		can.setFillColor(red)
-		meaning_ja = ja(exception5)
+		if "/" in exception5:
+			meaning_ja = ja(exception5)
+		else :
+			meaning_ja = ""
 		meaning_vi = vi(exception5,len(meaning_ja),len(exception5))
 		can.setFont('simsun', 9, leading=None)
 		meaning_ja = exception_correction(meaning_ja)
@@ -243,7 +271,6 @@ def ja(value):
 			ja_result += "/"
 		else :
 			ja_result += char2
-	print(ja_result)
 	return ja_result
 def vi(value,len_ja,len_all):
 	vietnamese = ""
@@ -281,13 +308,11 @@ def correction(string):
 	else:
 		return string
 def exception_correction(string):
-	print(string)
-	print(len(string))
 	if len(string) <= 10:
 		return  string + "      "
 	elif len(string) <= 20:
 		return string + "     "
-	elif len(string) <= 30:
+	elif len(string) > 20:
 		return string + "    "
 	else:
 		return string
